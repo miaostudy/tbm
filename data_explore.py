@@ -6,7 +6,6 @@ from scipy import stats
 import os
 from math import ceil
 
-# 设置中文显示
 plt.rcParams["font.family"] = ["SimHei"]
 plt.rcParams['axes.unicode_minus'] = False
 sns.set_style("whitegrid")

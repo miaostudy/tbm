@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import os
-from scipy import stats
 
 
 def process_wear_data(wear_df):
@@ -9,10 +8,8 @@ def process_wear_data(wear_df):
 
     for col in wear_df.columns:
         if col.startswith('cutter_'):
-            # 当前段与上一段的差值
             wear_df[col] = wear_df[col] - wear_copy[col].shift(1)
 
-            # 如果差值为负，说明换刀了，当前磨损就是绝对值
             wear_df.loc[wear_df[col] < 0, col] = wear_copy[col][wear_df[col] < 0]
 
     first_segment = wear_df.index[0]
@@ -23,9 +20,10 @@ def process_wear_data(wear_df):
     return wear_df
 
 
-def aggregate_tunnel_data(tunnel_df):
+def aggregate_tunnel_data(tunnel_df, max_distance):
     tunnel_df = tunnel_df.loc[:, ~tunnel_df.columns.str.contains('Unnamed', na=False)]
     tunnel_df = tunnel_df.dropna(axis=1, how='all')
+
     tunnel_rename_map = {
         '掘进位移(m)': 'tunneling_displacement',
         '刀盘转速（RPM）': 'cutter_head_speed_rpm',
@@ -74,50 +72,30 @@ def aggregate_tunnel_data(tunnel_df):
     }
     tunnel_df = tunnel_df.rename(columns=tunnel_rename_map)
 
-    # 对掘进距离进行四舍五入到最近的1.5m倍数，这样就能确定其所属区间段了
+    print(f"过滤前隧道数据行数: {len(tunnel_df)}")
+    tunnel_df = tunnel_df[tunnel_df['tunneling_displacement'] <= max_distance]
+    print(f"过滤后隧道数据行数（仅保留≤{max_distance}m的记录）: {len(tunnel_df)}")
+
     tunnel_df['distance_segment'] = np.round(tunnel_df['tunneling_displacement'] / 1.5) * 1.5
 
     agg_dict = {}
     for col in tunnel_df.columns:
         if col not in ['tunneling_displacement', 'distance_segment']:
-            if col == 'advance_speed_mm_per_min':
-                agg_dict[col] = ['mean']
-            else:
-                agg_dict[col] = [
-                    'mean',  # 平均值
-                    'max',  # 最大值
-                    'min',  # 最小值
-                    'std',  # 标准差
-                    'var',  # 方差
-                    'median',  # 中位数
-                    lambda x: x.quantile(0.25),  # 25%分位数
-                    lambda x: x.quantile(0.75),  # 75%分位数
-                    lambda x: stats.skew(x) if len(x) > 1 else 0,  # 偏度
-                    lambda x: stats.kurtosis(x) if len(x) > 1 else 0,  # 峰度
-                    'count'  # 数据点数量
-                ]
+            agg_dict[col] = ['mean']
 
-    # 按区间聚合，并且计算统计特征
     tunnel_aggregated = tunnel_df.groupby('distance_segment').agg(agg_dict)
 
-    # 重命名
     tunnel_aggregated.columns = [
-        '_'.join(col).strip()
-        .replace('<lambda_0>', 'p25')
-        .replace('<lambda_1>', 'p75')
-        .replace('<lambda_2>', 'skew')
-        .replace('<lambda_3>', 'kurtosis')
+        f"{col[0]}_mean"
         for col in tunnel_aggregated.columns.values
     ]
 
-    # 使distance_segment成为普通列
     tunnel_aggregated = tunnel_aggregated.reset_index()
 
     return tunnel_aggregated
 
 
 def merge_tunnel_data(cutter_layout_path, geologic_path, tunnel_data_path, wear_data_path, output_path):
-    """合并四个Excel文件的数据"""
     print("正在读取数据文件...")
     cutter_df = pd.read_excel(cutter_layout_path)
     geologic_df = pd.read_excel(geologic_path)
@@ -126,32 +104,31 @@ def merge_tunnel_data(cutter_layout_path, geologic_path, tunnel_data_path, wear_
 
     print("正在预处理数据...")
 
-    cutter_df.columns = ['cutter_id', 'radius_mm', 'type', 'installation_plane_angle',
-                         'inclination_to_axis', 'wear_limit_mm', 'neighbors']
-
     wear_df.columns = ['segment_id', 'tunneling_distance', 'energy',
                        *[f'cutter_{i}_wear' for i in range(1, 42)]]
     wear_df = process_wear_data(wear_df)
 
-    tunnel_aggregated = aggregate_tunnel_data(tunnel_df)
+    max_segment_distance = wear_df['tunneling_distance'].max()
+    print(f"segment对应的最大掘进位移: {max_segment_distance}m")
+
+    cutter_df.columns = ['cutter_id', 'radius_mm', 'type', 'installation_plane_angle',
+                         'inclination_to_axis', 'wear_limit_mm', 'neighbors']
+
+    tunnel_aggregated = aggregate_tunnel_data(tunnel_df, max_segment_distance)
 
     geologic_df.columns = ['segment_id', 'ucs_mpa', 'cai', 'bts_mpa', 'des_g_per_mm2', 'bq']
 
     segment_distance_map = wear_df[['segment_id', 'tunneling_distance']].set_index('segment_id').to_dict()[
         'tunneling_distance']
-
     geologic_df['tunneling_distance'] = geologic_df['segment_id'].map(segment_distance_map)
 
     print("正在合并数据...")
 
-    # 合并地质数据和磨损数据
     merged_df = pd.merge(geologic_df, wear_df, on=['segment_id', 'tunneling_distance'], how='inner')
 
-    # 合并聚合后的掘进参数数据
     merged_df = pd.merge(merged_df, tunnel_aggregated,
                          left_on='tunneling_distance', right_on='distance_segment',
                          how='left')
-
 
     for cutter_id in cutter_df['cutter_id'].unique():
         cutter_info = cutter_df[cutter_df['cutter_id'] == cutter_id].iloc[0].to_dict()
@@ -170,7 +147,7 @@ if __name__ == "__main__":
     geologic_path = "./data/geologic_parameter.xlsx"
     tunnel_data_path = "./data/tunnel_data.xlsx"
     wear_data_path = "./data/wear_data.xlsx"
-    output_path = "./data/merged_tunnel_data.xlsx"
+    output_path = "./data/merged_tunnel_data_2.xlsx"
 
     for path in [cutter_layout_path, geologic_path, tunnel_data_path, wear_data_path]:
         if not os.path.exists(path):
@@ -192,5 +169,7 @@ if __name__ == "__main__":
                           col == 'energy' or
                           col == 'advance_speed_mm_per_min_mean']
     print(f"\n预测值字段共 {len(prediction_columns)} 个，包括：")
-    for col in prediction_columns:
+    for col in prediction_columns[:10]:
         print(f"- {col}")
+    if len(prediction_columns) > 10:
+        print(f"- ... 还有 {len(prediction_columns) - 10} 个字段")

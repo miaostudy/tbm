@@ -1,172 +1,40 @@
 目标变量: energy
-特征选择后的列名: ['bts_mpa', 'tunneling_distance', 'distance_segment', 'cutter_head_speed_rpm_mean', 'main_thrust_kn_mean', 'auxiliary_gripper_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'backup_rotary_conveying_pressure_mean', 'return_oil_pressure_mean', 'rolling_shield_gripper_status_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_04_mean']
-PCA处理后的特征数量: 20
+特征选择后的列名: ['cutter_head_speed_rpm_mean', 'cutter_head_speed_rpm_max', 'main_thrust_kn_mean', 'main_thrust_kn_max', 'absorption_pump_m6_current_mean', 'absorption_pump_m6_current_max', 'absorption_pump_m6_current_min', 'main_thrust_cylinder_4_5_mean', 'main_thrust_cylinder_4_5_max', 'main_thrust_cylinder_6_7_mean', 'main_thrust_cylinder_6_7_max', 'closed_loop_water_system_status_mean', 'closed_loop_water_system_status_min', 'thrust_proportion_valve_bottom_mean', 'stabilizer_pressure_bar_mean']
+PCA处理后的特征数量: 6
 
 目标变量: advance_speed_mm_per_min_mean
-特征选择后的列名: ['bq', 'tunneling_distance', 'distance_segment', 'cutter_head_speed_rpm_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_gripper_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m2_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'backup_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_top_mean', 'return_oil_pressure_mean', 'rolling_shield_gripper_status_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_04_mean', 'torque_motor_07_mean']
-PCA处理后的特征数量: 20
+特征选择后的列名: ['absorption_pump_m2_current_mean', 'absorption_pump_m2_current_std', 'thrust_proportion_valve_bottom_mean', 'thrust_proportion_valve_bottom_min', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_left_min', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_right_min', 'thrust_proportion_valve_top_mean', 'thrust_proportion_valve_top_min', 'return_oil_pressure_mean', 'return_oil_pressure_std', 'return_oil_pressure_max', 'return_oil_pressure_min', 'stabilizer_pressure_bar_mean']
+PCA处理后的特征数量: 6
 
-目标变量: cutter_1_wear
-特征选择后的列名: ['ucs_mpa', 'cai', 'bts_mpa', 'des_g_per_mm2', 'tunneling_distance', 'distance_segment', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'lubrication_pressure_ptx97_05_mean', 'lubrication_pressure_ptx97_03_mean', 'thrust_proportion_valve_right_mean', 'return_oil_pressure_mean', 'stabilizer_pressure_bar_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_04_mean', 'torque_motor_07_mean']
-PCA处理后的特征数量: 20
+目标变量: wear_1_total
+特征选择后的列名: ['auxiliary_gripper_pressure_bar_mean', 'auxiliary_gripper_pressure_bar_min', 'absorption_pump_m2_current_mean', 'absorption_pump_m6_current_std', 'absorption_pump_m6_current_max', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_left_min', 'thrust_proportion_valve_top_mean', 'thrust_proportion_valve_top_min', 'return_oil_pressure_mean', 'return_oil_pressure_std', 'return_oil_pressure_max', 'return_oil_pressure_min', 'stabilizer_pressure_bar_mean', 'closed_loop_water_temperature_min']
+PCA处理后的特征数量: 7
 
-目标变量: cutter_2_wear
-特征选择后的列名: ['ucs_mpa', 'cai', 'bts_mpa', 'des_g_per_mm2', 'tunneling_distance', 'distance_segment', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'lubrication_pressure_ptx97_05_mean', 'lubrication_pressure_ptx97_03_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'return_oil_pressure_mean', 'stabilizer_pressure_bar_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_07_mean']
-PCA处理后的特征数量: 20
+目标变量: wear_7_total
+特征选择后的列名: ['auxiliary_gripper_pressure_bar_mean', 'auxiliary_gripper_pressure_bar_min', 'absorption_pump_m2_current_mean', 'absorption_pump_m6_current_std', 'absorption_pump_m6_current_max', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_left_min', 'thrust_proportion_valve_top_mean', 'thrust_proportion_valve_top_min', 'return_oil_pressure_mean', 'return_oil_pressure_std', 'return_oil_pressure_max', 'return_oil_pressure_min', 'stabilizer_pressure_bar_mean', 'closed_loop_water_temperature_mean']
+PCA处理后的特征数量: 7
 
-目标变量: cutter_3_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'bq', 'tunneling_distance', 'distance_segment', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m3_current_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_10_mean', 'closed_loop_water_system_status_mean', 'thrust_proportion_valve_right_mean', 'return_oil_pressure_mean', 'rolling_shield_gripper_status_mean', 'stabilizer_pressure_bar_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_07_mean']
-PCA处理后的特征数量: 20
+目标变量: wear_10_total
+特征选择后的列名: ['auxiliary_gripper_pressure_bar_mean', 'auxiliary_gripper_pressure_bar_min', 'absorption_pump_m2_current_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_left_min', 'thrust_proportion_valve_top_mean', 'thrust_proportion_valve_top_min', 'return_oil_pressure_mean', 'return_oil_pressure_std', 'return_oil_pressure_max', 'return_oil_pressure_min', 'stabilizer_pressure_bar_mean', 'closed_loop_water_temperature_mean', 'closed_loop_water_temperature_max', 'closed_loop_water_temperature_min']
+PCA处理后的特征数量: 6
 
-目标变量: cutter_4_wear
-特征选择后的列名: ['ucs_mpa', 'cai', 'bts_mpa', 'des_g_per_mm2', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
+目标变量: wear_19_total
+特征选择后的列名: ['auxiliary_gripper_pressure_bar_mean', 'auxiliary_gripper_pressure_bar_min', 'lubrication_pressure_ptx97_06_max', 'return_oil_pressure_mean', 'return_oil_pressure_std', 'return_oil_pressure_max', 'return_oil_pressure_min', 'rolling_shield_gripper_status_mean', 'rolling_shield_gripper_status_max', 'rolling_shield_gripper_status_min', 'stabilizer_pressure_bar_mean', 'torque_motor_01_mean', 'torque_motor_04_mean', 'torque_motor_07_mean', 'torque_motor_07_max']
+PCA处理后的特征数量: 5
 
-目标变量: cutter_5_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
+目标变量: wear_29_total
+特征选择后的列名: ['cai', 'auxiliary_gripper_pressure_bar_mean', 'auxiliary_gripper_pressure_bar_min', 'absorption_pump_m2_current_mean', 'main_thrust_piston_rod_1_max', 'thrust_proportion_valve_bottom_min', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_left_min', 'thrust_proportion_valve_top_mean', 'thrust_proportion_valve_top_min', 'return_oil_pressure_mean', 'return_oil_pressure_std', 'return_oil_pressure_max', 'return_oil_pressure_min', 'stabilizer_pressure_bar_mean']
+PCA处理后的特征数量: 7
 
-目标变量: cutter_6_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
+目标变量: wear_30_total
+特征选择后的列名: ['auxiliary_gripper_pressure_bar_mean', 'auxiliary_gripper_pressure_bar_min', 'thrust_proportion_valve_top_mean', 'thrust_proportion_valve_top_min', 'return_oil_pressure_mean', 'return_oil_pressure_std', 'return_oil_pressure_max', 'return_oil_pressure_min', 'rolling_shield_gripper_status_mean', 'rolling_shield_gripper_status_max', 'rolling_shield_gripper_status_min', 'torque_motor_01_mean', 'torque_motor_04_mean', 'torque_motor_07_mean', 'torque_motor_07_max']
+PCA处理后的特征数量: 5
 
-目标变量: cutter_7_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
+目标变量: wear_37_total
+特征选择后的列名: ['des_g_per_mm2', 'wear_19_increment', 'wear_38_increment', 'torque_pressure_bar_mean', 'torque_pressure_bar_std', 'absorption_pump_m3_current_max', 'absorption_pump_m4_current_mean', 'lubrication_pressure_ptx97_03_min', 'main_thrust_cylinder_1_10_max', 'main_thrust_cylinder_4_5_mean', 'main_thrust_cylinder_4_5_max', 'main_thrust_cylinder_6_7_mean', 'main_thrust_cylinder_6_7_max', 'main_thrust_piston_rod_10_mean', 'thrust_proportion_valve_top_std']
+PCA处理后的特征数量: 10
 
-目标变量: cutter_8_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_9_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_10_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_11_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_12_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_13_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_14_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_15_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_16_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_17_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_18_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_19_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_20_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_21_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_22_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_23_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_24_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_25_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_26_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_27_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_28_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_29_wear
-特征选择后的列名: ['bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_30_wear
-特征选择后的列名: ['ucs_mpa', 'cai', 'bts_mpa', 'bq', 'tunneling_distance', 'distance_segment', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m6_current_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_cylinder_1_10_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_31_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'bq', 'tunneling_distance', 'distance_segment', 'main_thrust_kn_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_thrust_cylinder_2_mean', 'lubrication_pressure_ptx97_05_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_cylinder_4_5_mean', 'main_thrust_cylinder_6_7_mean', 'tbm_rotary_conveying_pressure_mean', 'stabilizer_pressure_bar_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_04_mean', 'torque_motor_07_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_32_wear
-特征选择后的列名: ['cai', 'bts_mpa', 'bq', 'cutter_head_speed_rpm_mean', 'main_thrust_kn_mean', 'torque_pressure_bar_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_cylinder_1_10_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_33_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'bq', 'tunneling_distance', 'distance_segment', 'main_thrust_kn_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m2_current_mean', 'lubrication_pressure_ptx97_05_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_cylinder_4_5_mean', 'main_thrust_cylinder_6_7_mean', 'return_oil_pressure_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_04_mean', 'torque_motor_07_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_34_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'bq', 'tunneling_distance', 'distance_segment', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m4_current_mean', 'lubrication_pressure_ptx97_05_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_cylinder_4_5_mean', 'main_thrust_cylinder_6_7_mean', 'tbm_rotary_conveying_pressure_mean', 'stabilizer_pressure_bar_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_07_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_35_wear
-特征选择后的列名: ['ucs_mpa', 'cai', 'bts_mpa', 'des_g_per_mm2', 'tunneling_distance', 'distance_segment', 'main_thrust_kn_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m3_current_mean', 'lubrication_pressure_ptx97_05_mean', 'lubrication_pressure_ptx97_03_mean', 'thrust_proportion_valve_right_mean', 'return_oil_pressure_mean', 'stabilizer_pressure_bar_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_04_mean', 'torque_motor_07_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_36_wear
-特征选择后的列名: ['bts_mpa', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'cutter_head_torque_kNm_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'lubrication_pressure_ptx97_05_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_cylinder_1_10_mean', 'main_thrust_cylinder_6_7_mean', 'main_thrust_cylinder_8_9_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'closed_loop_water_system_status_mean', 'thrust_proportion_valve_bottom_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_37_wear
-特征选择后的列名: ['ucs_mpa', 'bts_mpa', 'des_g_per_mm2', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'auxiliary_thrust_cylinder_2_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m4_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'hydraulic_oil_level_mean', 'lubrication_pressure_ptx97_06_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_10_mean', 'tbm_rotary_conveying_pressure_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_38_wear
-特征选择后的列名: ['bq', 'tunneling_distance', 'distance_segment', 'cutter_head_speed_rpm_mean', 'main_thrust_kn_mean', 'torque_pressure_bar_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m6_current_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_cylinder_1_10_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean', 'torque_motor_03_mean', 'torque_motor_04_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_39_wear
-特征选择后的列名: ['bq', 'tunneling_distance', 'distance_segment', 'cutter_head_speed_rpm_mean', 'auxiliary_gripper_pressure_bar_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m6_current_mean', 'oil_humidity_sensor_mean', 'hydraulic_oil_level_mean', 'lubrication_pressure_ptx97_03_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_top_mean', 'return_oil_pressure_mean', 'rolling_shield_gripper_status_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_04_mean', 'torque_motor_07_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_40_wear
-特征选择后的列名: ['cai', 'bq', 'tunneling_distance', 'distance_segment', 'cutter_head_speed_rpm_mean', 'torque_pressure_bar_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m1_current_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m6_current_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'stabilizer_pressure_bar_mean', 'torque_motor_03_mean', 'torque_motor_04_mean']
-PCA处理后的特征数量: 20
-
-目标变量: cutter_41_wear
-特征选择后的列名: ['cai', 'bq', 'tunneling_distance', 'distance_segment', 'cutter_head_speed_rpm_mean', 'main_thrust_kn_mean', 'torque_pressure_bar_mean', 'cutter_head_torque_kNm_mean', 'auxiliary_thrust_cylinder_1_mean', 'absorption_pump_m3_current_mean', 'absorption_pump_m6_current_mean', 'lubrication_pressure_ptx97_03_mean', 'main_thrust_piston_rod_1_mean', 'main_thrust_piston_rod_10_mean', 'thrust_proportion_valve_left_mean', 'thrust_proportion_valve_top_mean', 'torque_motor_01_mean', 'torque_motor_02_mean', 'torque_motor_03_mean', 'torque_motor_04_mean']
-PCA处理后的特征数量: 20
+目标变量: wear_38_total
+特征选择后的列名: ['wear_7_increment', 'wear_38_increment', 'lubrication_pressure_ptx97_03_std', 'lubrication_pressure_ptx97_03_min', 'main_thrust_cylinder_4_5_mean', 'main_thrust_cylinder_4_5_max', 'main_thrust_cylinder_6_7_mean', 'main_thrust_cylinder_6_7_max', 'thrust_proportion_valve_right_mean', 'thrust_proportion_valve_top_mean', 'return_oil_pressure_mean', 'torque_motor_02_mean', 'torque_motor_02_max', 'torque_motor_03_mean', 'torque_motor_03_max']
+PCA处理后的特征数量: 7
 

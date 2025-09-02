@@ -40,7 +40,7 @@ class TBMRegressionModel:
 
         self.target_columns = target_columns if target_columns else [
                                                                         'energy', 'advance_speed_mm_per_min_mean'
-                                                                    ] + [f'cutter_{i}_wear' for i in range(1, 42)]
+                                                                    ] + [f'wear_{i}_total' for i in range(1, 42)]
 
         self.target_columns = [col for col in self.target_columns if col in self.data.columns]
         print(f"有效目标列: {self.target_columns}")
@@ -54,7 +54,7 @@ class TBMRegressionModel:
         print(f"初始特征列: {self.feature_columns}")
 
         self.categorical_features = []
-        self.numerical_features = self.feature_columns  # 所有特征都是数值特征
+        self.numerical_features = self.feature_columns
 
         self.X = self.data[self.feature_columns]
         self.y = self.data[self.target_columns]
@@ -448,7 +448,7 @@ def load_and_predict(new_data_path):
 
 
 if __name__ == "__main__":
-    data_path = "./data/merged_tunnel_data_2.xlsx"
+    data_path = "./data/merged_tunnel_data_new.xlsx"
     tbm_model = TBMRegressionModel(data_path)
     tbm_model.init_global_preprocessor()
     tbm_model.train_models(use_pca=True)

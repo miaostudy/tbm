@@ -1,29 +1,52 @@
 import pandas as pd
-import numpy as np
-import os
 
 
 def process_wear_data(wear_df):
+    """
+    处理磨损数据，计算磨损增量并处理负值
+
+    参数:
+        wear_df: 包含磨损数据的DataFrame，列名以'wear_'开头
+
+    返回:
+        处理后的磨损数据，包含原始磨损量(添加_total后缀)和磨损增量(添加_increment后缀)
+    """
+    # 创建数据副本以避免修改原始数据
     wear_copy = wear_df.copy()
+    # 识别所有磨损相关列
+    wear_columns = [col for col in wear_df.columns if col.startswith('wear_')]
 
-    for col in wear_df.columns:
-        if col.startswith('cutter_'):
-            wear_df[col] = wear_df[col] - wear_copy[col].shift(1)
-
-            wear_df.loc[wear_df[col] < 0, col] = wear_copy[col][wear_df[col] < 0]
-
-    first_segment = wear_df.index[0]
-    for col in wear_df.columns:
-        if col.startswith('cutter_'):
-            wear_df.loc[first_segment, col] = wear_copy.loc[first_segment, col]
+    for col in wear_columns:
+        # 计算磨损增量（当前值减去前一行值）
+        wear_df[f'{col}_increment'] = wear_df[col] - wear_copy[col].shift(1)
+        # 第一行的增量等于其本身值
+        wear_df.loc[0, f'{col}_increment'] = wear_df.loc[0, col]
+        # 处理负增量（可能由测量误差引起）
+        negative_mask = wear_df[f'{col}_increment'] < 0
+        if negative_mask.any():
+            wear_df.loc[negative_mask, f'{col}_increment'] = 0
+        # 重命名原始磨损列为总磨损
+        wear_df.rename(columns={col: f'{col}_total'}, inplace=True)
 
     return wear_df
 
 
-def aggregate_tunnel_data(tunnel_df, max_distance):
+def aggregate_tunnel_data(tunnel_df, wear_df):
+    """
+    聚合隧道掘进机操作数据，按距离段计算统计特征
+
+    参数:
+        tunnel_df: 包含隧道掘进机操作数据的DataFrame
+        wear_df: 包含磨损数据的DataFrame，用于确定距离分段
+
+    返回:
+        按距离段聚合后的隧道操作数据，包含各特征的均值、标准差、最大值和最小值
+    """
+    # 移除无名列和全空列
     tunnel_df = tunnel_df.loc[:, ~tunnel_df.columns.str.contains('Unnamed', na=False)]
     tunnel_df = tunnel_df.dropna(axis=1, how='all')
 
+    # 重命名列名，使其更规范
     tunnel_rename_map = {
         '掘进位移(m)': 'tunneling_displacement',
         '刀盘转速（RPM）': 'cutter_head_speed_rpm',
@@ -72,104 +95,106 @@ def aggregate_tunnel_data(tunnel_df, max_distance):
     }
     tunnel_df = tunnel_df.rename(columns=tunnel_rename_map)
 
-    print(f"过滤前隧道数据行数: {len(tunnel_df)}")
+    # 移除重复或不需要的列
+    if 'cutter_head_torque_kNm' in tunnel_df.columns:
+        tunnel_df = tunnel_df.drop(columns=['cutter_head_torque_kNm'])
+
+    # 确保隧道数据不超过磨损数据的最大距离
+    max_distance = wear_df['simluate_distance'].max()
     tunnel_df = tunnel_df[tunnel_df['tunneling_displacement'] <= max_distance]
-    print(f"过滤后隧道数据行数（仅保留≤{max_distance}m的记录）: {len(tunnel_df)}")
 
-    tunnel_df['distance_segment'] = np.round(tunnel_df['tunneling_displacement'] / 1.5) * 1.5
+    # 将隧道数据按磨损数据中的距离分段进行分组
+    distance_segments = sorted(wear_df['simluate_distance'].unique())
+    tunnel_df['distance_segment'] = pd.cut(
+        tunnel_df['tunneling_displacement'],
+        bins=[0] + distance_segments,
+        labels=distance_segments
+    ).astype(float)
 
+    # 定义聚合函数：对每个特征计算均值、标准差、最大值和最小值
     agg_dict = {}
     for col in tunnel_df.columns:
         if col not in ['tunneling_displacement', 'distance_segment']:
-            agg_dict[col] = ['mean']
+            agg_dict[col] = ['mean', 'std', 'max', 'min']
 
+    # 按距离段进行聚合
     tunnel_aggregated = tunnel_df.groupby('distance_segment').agg(agg_dict)
 
+    # 重命名聚合后的列，格式为"特征_统计量"
     tunnel_aggregated.columns = [
-        f"{col[0]}_mean"
+        f"{col[0]}_{col[1]}"
         for col in tunnel_aggregated.columns.values
     ]
 
+    # 重置索引并规范化列名
     tunnel_aggregated = tunnel_aggregated.reset_index()
+    tunnel_aggregated.rename(columns={'distance_segment': 'simluate_distance'}, inplace=True)
 
     return tunnel_aggregated
 
 
-def merge_tunnel_data(cutter_layout_path, geologic_path, tunnel_data_path, wear_data_path, output_path):
-    print("正在读取数据文件...")
+def merge_tunnel_data(cutter_layout_path, tunnel_data_path, wear_data_path, output_path):
+    """
+    合并刀具布局数据、隧道操作数据和磨损数据
+
+    参数:
+        cutter_layout_path: 刀具布局数据文件路径
+        tunnel_data_path: 隧道操作数据文件路径
+        wear_data_path: 磨损数据文件路径
+        output_path: 合并后数据的保存路径
+
+    返回:
+        合并后的DataFrame
+    """
+    # 加载各类数据
     cutter_df = pd.read_excel(cutter_layout_path)
-    geologic_df = pd.read_excel(geologic_path)
     tunnel_df = pd.read_excel(tunnel_data_path)
     wear_df = pd.read_excel(wear_data_path)
 
-    print("正在预处理数据...")
-
-    wear_df.columns = ['segment_id', 'tunneling_distance', 'energy',
-                       *[f'cutter_{i}_wear' for i in range(1, 42)]]
+    # 处理磨损数据
     wear_df = process_wear_data(wear_df)
 
-    max_segment_distance = wear_df['tunneling_distance'].max()
-    print(f"segment对应的最大掘进位移: {max_segment_distance}m")
-
+    # 规范化刀具布局数据列名
     cutter_df.columns = ['cutter_id', 'radius_mm', 'type', 'installation_plane_angle',
                          'inclination_to_axis', 'wear_limit_mm', 'neighbors']
 
-    tunnel_aggregated = aggregate_tunnel_data(tunnel_df, max_segment_distance)
+    # 聚合隧道操作数据
+    tunnel_aggregated = aggregate_tunnel_data(tunnel_df, wear_df)
 
-    geologic_df.columns = ['segment_id', 'ucs_mpa', 'cai', 'bts_mpa', 'des_g_per_mm2', 'bq']
+    # 合并磨损数据和聚合后的隧道数据
+    merged_df = pd.merge(
+        wear_df,
+        tunnel_aggregated,
+        on='simluate_distance',  # 按距离进行合并
+        how='left'
+    )
 
-    segment_distance_map = wear_df[['segment_id', 'tunneling_distance']].set_index('segment_id').to_dict()[
-        'tunneling_distance']
-    geologic_df['tunneling_distance'] = geologic_df['segment_id'].map(segment_distance_map)
-
-    print("正在合并数据...")
-
-    merged_df = pd.merge(geologic_df, wear_df, on=['segment_id', 'tunneling_distance'], how='inner')
-
-    merged_df = pd.merge(merged_df, tunnel_aggregated,
-                         left_on='tunneling_distance', right_on='distance_segment',
-                         how='left')
-
-    # for cutter_id in cutter_df['cutter_id'].unique():
-    #     cutter_info = cutter_df[cutter_df['cutter_id'] == cutter_id].iloc[0].to_dict()
-    #     for key, value in cutter_info.items():
-    #         if key != 'cutter_id':
-    #             merged_df[f'cutter_{cutter_id}_{key}'] = value
-
+    # 保存合并结果
     merged_df.to_excel(output_path, index=False)
     print(f"数据合并完成，已保存至 {output_path}")
-
     return merged_df
 
 
 if __name__ == "__main__":
+    # 数据文件路径
     cutter_layout_path = "./data/Cutter_layout_template.xlsx"
-    geologic_path = "./data/geologic_parameter.xlsx"
     tunnel_data_path = "./data/tunnel_data.xlsx"
-    wear_data_path = "./data/wear_data.xlsx"
-    output_path = "./data/merged_tunnel_data_3.xlsx"
+    wear_data_path = "./data/wear_data_new.xlsx"
+    output_path = "./data/merged_tunnel_data_new.xlsx"
 
-    for path in [cutter_layout_path, geologic_path, tunnel_data_path, wear_data_path]:
-        if not os.path.exists(path):
-            print(f"错误：文件 {path} 不存在，请检查路径是否正确。")
-            exit(1)
-
+    # 执行数据合并
     merged_data = merge_tunnel_data(
         cutter_layout_path,
-        geologic_path,
         tunnel_data_path,
         wear_data_path,
         output_path
     )
 
-    print(f"合并后的数据集包含 {merged_data.shape[0]} 行和 {merged_data.shape[1]} 列")
-
-    prediction_columns = [col for col in merged_data.columns if
-                          col.startswith('cutter_') and col.endswith('_wear') or
-                          col == 'energy' or
-                          col == 'advance_speed_mm_per_min_mean']
-    print(f"\n预测值字段共 {len(prediction_columns)} 个，包括：")
-    for col in prediction_columns[:10]:
-        print(f"- {col}")
-    if len(prediction_columns) > 10:
-        print(f"- ... 还有 {len(prediction_columns) - 10} 个字段")
+    # 定义预测相关列
+    prediction_columns = [
+        col for col in merged_data.columns
+        if (col.startswith('wear_') and col.endswith('_increment')) or
+           (col.startswith('wear_') and col.endswith('_total')) or
+           col == 'energy' or
+           col == 'advance_speed_mm_per_min_mean'
+    ]

@@ -19,7 +19,7 @@ import joblib
 import os
 from tqdm import tqdm
 
-plt.rcParams["font.family"] = ["SimHei"]
+# plt.rcParams["font.family"] = ["SimHei"]
 plt.rcParams["axes.unicode_minus"] = False
 
 if not os.path.exists('models'):
